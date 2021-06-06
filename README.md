@@ -23,3 +23,6 @@ func generateQrCode() -> NSImage? {
     )
 }
 ```
+
+## Generated QR codes
+![Codes](http://url/to/img.png)

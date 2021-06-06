@@ -2,6 +2,9 @@ import Cocoa
 import Foundation
 
 struct QRCode {
+
+    // The reference to this values can be found at 
+    // https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html#//apple_ref/doc/filter/ci/CIQRCodeGenerator
     enum Quality {
         case low
         case medium
