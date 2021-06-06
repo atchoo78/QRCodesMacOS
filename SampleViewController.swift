@@ -5,19 +5,22 @@ class SampleViewController: NSViewController {
     
     func generateQrCode() -> NSImage? {
         let text = "https://cristhianleonli.medium.com"
-        let correction = QRCode.Quality.medium
+        let correction = QRCodeCorrection.medium
         let size: CGFloat = 400
         
-        let color = QRCode.Color(
-            pointStart: .gray,
-            pointEnd: nil,
-            backgroundStart: .blue,
-            backgroundEnd: nil
+        let pointColor = QRCodeColor.gradient(
+            start: .gray,
+            end: .blue
+        )
+        
+        let backgroundColor = QRCodeColor.solid(
+            color: NSColor.orange
         )
         
         return QRGenerator.create(
             text: text,
-            color: color,
+            pointColor: pointColor,
+            backgroundColor: backgroundColor,
             size: size,
             correction: correction
         )
