@@ -42,6 +42,17 @@ extension NSImage {
         return newImage
     }
     
+    func parseQR(QR: CIImage?) -> [String?] {
+        let image = QR
+        let detector = CIDetector(ofType: CIDetectorTypeQRCode,
+                                  context: nil,
+                                  options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])
+        let features = detector?.features(in: image!) ?? []
+        return features.compactMap { feature in
+            return (feature as? CIQRCodeFeature)?.messageString
+        }
+    }
+    
     func merge(with other: NSImage?) -> NSImage? {
         guard let otherImage = other else {
             return nil
