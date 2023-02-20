@@ -25,7 +25,8 @@ if(parseQR(QR: generatedQR!.ciImage())[0] != nil) {
 
 
 func generateQrCode(text: String, pointColorStart: NSColor, pointColorEnd: NSColor?, backgroundColorStart: NSColor, backgroundColorEnd: NSColor?) -> NSImage? {
-   	    let correction = QRCode.Quality.high
+
+   	let correction = QRCode.Quality.high
     	let size: CGFloat = 400
     
     	let pointColor = QRCode.PointColor(
