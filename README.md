@@ -1,7 +1,8 @@
 # QR codes on macOS using Swift 5
 #### This is forked from github.com/cristhianleonli/QRCodesMacOS
 
-This is how we can use the package. It creates a QR code given text, quality, size, and color parameters.
+
+Example usage. It creates a QR code given text, quality, size, and color parameters. 
 
 ```swift
 
