@@ -19,8 +19,8 @@ let generatedQR = generateQrCode(text: text!, pointColorStart: pointColorStart, 
 // update UI
 <Some ImageView>.image = generatedQR
 if(parseQR(QR: generatedQR!.ciImage())[0] != nil) {
-					qrURLString = parseQR(QR: generatedQR!.ciImage())[0]
-                    <Some Textfield>.stringValue = qrURLString!
+	qrURLString = parseQR(QR: generatedQR!.ciImage())[0]
+	<Some Textfield>.stringValue = qrURLString!
 }
 
 
