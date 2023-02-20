@@ -21,10 +21,13 @@ struct QRCode {
         }
     }
     
-    struct Color {
-        var pointStart: NSColor
-        var pointEnd: NSColor?
-        var backgroundStart: NSColor
-        var backgroundEnd: NSColor?
+	struct BackgroundColor {
+        var start: NSColor
+        var end: NSColor?
+    }
+    
+	struct PointColor {
+		var start: NSColor
+		var end: NSColor?
     }
 }
