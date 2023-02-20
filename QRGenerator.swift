@@ -2,9 +2,9 @@ import Cocoa
 import Foundation
 
 struct QRGenerator {
-    static func create(text: String, color: QRCode.Color, size: CGFloat, correction: QRCode.Quality) -> NSImage? {
+    static func create(text: String, background: QRCode.BackgroundColor, color: QRCode.PointColor, size: CGFloat, correction: QRCode.Quality) -> NSImage? {
         guard
-            let background = createBackgroundImage(color: color, size: size),
+            let background = createBackgroundImage(color: background, size: size),
             let pixel = createForegroundImage(text: text, color: color, correction: correction, size: size) else {
                 return nil
         }
@@ -16,31 +16,31 @@ struct QRGenerator {
         return result?.resize(w: size, h: size)
     }
     
-    static func createBackgroundImage(color: QRCode.Color, size: CGFloat) -> NSImage? {
+    static func createBackgroundImage(color: QRCode.BackgroundColor, size: CGFloat) -> NSImage? {
         // create a view with of desired size
         let view = NSView(frame: NSRect(origin: .zero, size: CGSize(width: size, height: size)))
         
         // apply the color
-        view.layer?.backgroundColor = color.backgroundStart.cgColor
+        view.layer?.backgroundColor = color.start.cgColor
         
         // draw the background
         let image = NSImage(size: NSSize(width: size, height: size))
         image.lockFocus()
-        color.backgroundStart.drawSwatch(in: NSRect(origin: .zero, size: CGSize(width: size, height: size)))
+        color.start.drawSwatch(in: NSRect(origin: .zero, size: CGSize(width: size, height: size)))
         image.unlockFocus()
         
         // If there's an end color, it means, a gradient is required.
-        if let backgroundEndColor = color.backgroundEnd {
-            return image.maskWithGradient(start: color.backgroundStart, end: backgroundEndColor)
+        if let backgroundEndColor = color.end {
+            return image.maskWithGradient(start: color.start, end: backgroundEndColor)
         }
         
         // If not gradient is required, return the image with the solid background
         return image
     }
     
-    static func createForegroundImage(text: String, color: QRCode.Color, correction: QRCode.Quality, size: CGFloat) -> NSImage? {
+    static func createForegroundImage(text: String, color: QRCode.PointColor, correction: QRCode.Quality, size: CGFloat) -> NSImage? {
         // Create the points of the QR code that will hold the encoded string
-        guard let qr = generateQrImage(from: text, pixelColor: color.pointStart, correction: correction) else {
+        guard let qr = generateQrImage(from: text, pixelColor: color.start, correction: correction) else {
             return nil
         }
         
@@ -56,8 +56,8 @@ struct QRGenerator {
         image.addRepresentation(rep)
         
         // if there's an end color, it means a gradient mask is required
-        if let pointEndColor = color.pointEnd {
-            return image.maskWithGradient(start: color.pointStart, end: pointEndColor)
+        if let pointEndColor = color.end {
+            return image.maskWithGradient(start: color.start, end: pointEndColor)
         }
         
         return image
