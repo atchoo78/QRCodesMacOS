@@ -42,6 +42,15 @@ extension NSImage {
         return newImage
     }
     
+    func ciImage() -> CIImage? {
+        guard let data = self.tiffRepresentation,
+              let bitmap = NSBitmapImageRep(data: data) else {
+            return nil
+        }
+        let ci = CIImage(bitmapImageRep: bitmap)
+        return ci
+    }
+    
     func parseQR(QR: CIImage?) -> [String?] {
         let image = QR
         let detector = CIDetector(ofType: CIDetectorTypeQRCode,
