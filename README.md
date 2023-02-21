@@ -29,7 +29,8 @@ func generateQrCode(text: String, pointColorStart: NSColor, pointColorEnd: NSCol
    	let correction = QRCode.Quality.high
     	let size: CGFloat = 400
     
-    	let pointColor = QRCode.PointColor(
+    	let pointColor = QRCode.PointColor(<img width="153" alt="qr5" src="https://user-images.githubusercontent.com/20549049/220308914-bed96b3f-b221-44b6-8a9d-67ae8bd34c32.png">
+
         	start: pointColorStart,
         	end: pointColorEnd
     	)
@@ -50,4 +51,4 @@ func generateQrCode(text: String, pointColorStart: NSColor, pointColorEnd: NSCol
 ```
 
 ## Generated QR codes
-![Codes](https://github.com/cristhianleonli/qr-codes-macos/blob/main/screnshots/codes.png)
+<img width="153" alt="qr3" src="https://user-images.githubusercontent.com/20549049/220308679-7aea4c70-322e-44d1-a624-9cd7d499997f.png"> <img width="153" alt="qr5" src="https://user-images.githubusercontent.com/20549049/220308955-bb90dba9-9124-4d5c-9258-afae9191eeef.png">
